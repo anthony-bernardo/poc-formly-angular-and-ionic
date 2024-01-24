@@ -1,26 +1,22 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular/standalone';
-import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
-import fields from '../../../../fields.json'
+import fields from '../../../../fields.json';
 import model from '../../../../model.json';
 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [
-    IonHeader, IonToolbar, IonTitle, IonContent,
     ReactiveFormsModule,
     FormlyModule,
     FormlyBootstrapModule
   ],
-
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
-export class HomePage {
-  constructor() { }
+export class HomeComponent {
   form = new FormGroup({});
   model = model.config;
   fields: FormlyFieldConfig[] = fields.config;

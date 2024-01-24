@@ -1,0 +1,28 @@
+{
+	"config": [
+		{
+			"key": "email",
+			"type": "app-input",
+			"props": {
+				"type": "email",
+				"label": "Email",
+				"required": true
+			},
+			"validation": {
+				"show": true
+			}
+		},
+		{
+			"key": "firstname",
+			"type": "app-input",
+			"props": {
+				"type": "firstname",
+				"label": "firstname",
+				"required": true
+			},
+			"validation": {
+				"show": true
+			}
+		}
+	]
+}
