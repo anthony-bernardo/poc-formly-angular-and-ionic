@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.btn-submit {
+  margin-left: 24px;
+}
+
+.invalid-feedback {
+  display: block;
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}

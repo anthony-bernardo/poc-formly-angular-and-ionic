@@ -7,7 +7,10 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
 import { FormlyModule } from '@ngx-formly/core';
-import { InputFieldType } from './app/home/form/input.component';
+import { StateSelectFieldType } from './app/home/form/state-select.component';
+import { FormlyIonicModule } from '@ngx-formly/ionic';
+import messages from '../../server/messages.json';
+import { CallFormSelectFieldType } from './app/home/form/call-form-select.component';
 
 if (environment.production) {
   enableProdMode();
@@ -19,11 +22,13 @@ bootstrapApplication(AppComponent, {
     provideIonicAngular(),
     provideRouter(routes),
     importProvidersFrom([
+      FormlyIonicModule,
       FormlyModule.forRoot({
-        validationMessages: [{ name: 'required', message: 'aaaa field is required' }],
         types: [
-          { name: 'app-input', component: InputFieldType, },
+          { name: 'call-form-select', component: CallFormSelectFieldType, },
+          { name: 'state-select', component: StateSelectFieldType, },
         ],
+        validationMessages: messages.config,
       }),
     ])
   ],

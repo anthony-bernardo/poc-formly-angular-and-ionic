@@ -1,0 +1,9 @@
+{
+	"config": {
+		"gender": "",
+		"firstName": "",
+		"lastName": "",
+		"otherState": false,
+		"state": ""
+	}
+}

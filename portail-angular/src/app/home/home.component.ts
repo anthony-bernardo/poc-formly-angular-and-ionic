@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
-import fields from '../../../../fields.json';
-import model from '../../../../model.json';
+import fields from '../../../../server/fields.json';
+import model from '../../../../server/model.json';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +14,17 @@ import model from '../../../../model.json';
     FormlyBootstrapModule
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   form = new FormGroup({});
   model = model.config;
-  fields: FormlyFieldConfig[] = fields.config;
+  fields: FormlyFieldConfig[] = [
+    {
+      fieldGroupClassName: 'form-group',
+      fieldGroup: fields.config
+    }
+  ];
 
   onSubmit(model: any) {
     if (this.form.valid) {
