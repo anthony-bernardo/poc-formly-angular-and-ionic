@@ -1,4 +1,4 @@
-## POC Formly - Angular and Ionic
+## :rocket: POC Formly - Angular and Ionic
 
 Goal :
 
