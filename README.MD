@@ -2,8 +2,8 @@
 
 ## :white_check_mark: Goal
 
-- [x] Share the same form between Angular and Ionic
-- [x] Use specific component for Angular and Ionic
+- [x] Share the same form between web and mobile
+- [x] Use plateform specific components
 - [x] Use Angular 17 (last version) with formly
 
 ## :rocket: Getting started
