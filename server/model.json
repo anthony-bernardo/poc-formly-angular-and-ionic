@@ -3,7 +3,7 @@
 		"gender": "",
 		"firstName": "",
 		"lastName": "",
-		"otherState": false,
+		"isInOtherState": false,
 		"state": ""
 	}
 }

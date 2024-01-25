@@ -29,7 +29,7 @@
 			}
 		},
 		{
-			"key": "otherState",
+			"key": "isInOtherState",
 			"type": "checkbox",
 			"props": {
 				"label": "Hors canton ?"
@@ -44,7 +44,7 @@
 				"placeholder": "Choisir un canton"
 			},
 			"expressions": {
-				"hide": "!model.otherState"
+				"hide": "!model.isInOtherState"
 			}
 		}
 	]
