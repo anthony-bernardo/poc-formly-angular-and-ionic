@@ -1,6 +1,6 @@
 ## POC Formly - Angular and Ionic
 
-### :target: Goal
+### :white_check_mark: Goal
 
 - [x] Share the same form between Angular and Ionic
 - [x] Use specific component for Angular and Ionic
