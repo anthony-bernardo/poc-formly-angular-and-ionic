@@ -1,12 +1,12 @@
-## :rocket: POC Formly - Angular and Ionic
+## POC Formly - Angular and Ionic
 
-Goal :
+### :target: Goal
 
 - [x] Share the same form between Angular and Ionic
 - [x] Use specific component for Angular and Ionic
 - [x] Use Angular 17 (last version) with formly
 
-## How to use
+## :rocket: Getting started
 
 ### 1. Run web :
 
