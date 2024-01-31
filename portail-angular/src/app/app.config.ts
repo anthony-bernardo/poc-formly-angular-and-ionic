@@ -8,16 +8,18 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import messages from '../../../server/messages.json';
 import { CallFormFieldType } from './home/form/call-form-select.component';
 
+export const formlyConfig = {
+  types: [
+    { name: 'call-form-select', component: CallFormFieldType, },
+    { name: 'state-select', component: StateSelectFieldType, },
+  ],
+  validationMessages: messages.config
+}
+
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
   importProvidersFrom([
-    FormlyModule.forRoot({
-      types: [
-        { name: 'call-form-select', component: CallFormFieldType, },
-        { name: 'state-select', component: StateSelectFieldType, },
-      ],
-      validationMessages: messages.config
-    }),
+    FormlyModule.forRoot(formlyConfig),
   ]), provideAnimations()]
 };
 
