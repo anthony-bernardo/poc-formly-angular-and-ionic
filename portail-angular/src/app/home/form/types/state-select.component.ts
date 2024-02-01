@@ -46,19 +46,31 @@ const states = [
         FormlyBootstrapModule,
     ],
     standalone: true,
+    styles: [
+        `
+        input {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+        }
+    `,
+    ],
     template: `
-    <input
-    matInput
-    [matAutocomplete]="auto"
-    [formControl]="formControl"
-    [formlyAttributes]="field"
-    [placeholder]="props.placeholder || 'Selectionnez'"
-  />
-  <mat-autocomplete #auto="matAutocomplete">
-    <mat-option *ngFor="let value of filter | async" [value]="value">
-      {{ value }}
-    </mat-option>
-  </mat-autocomplete>
+    <div>
+        <label>{{ props.label }}</label>
+        <input
+            matInput
+            [matAutocomplete]="auto"
+            [formControl]="formControl"
+            [formlyAttributes]="field"
+            [placeholder]="props.placeholder || 'Selectionnez'"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let value of filter | async" [value]="value">
+            {{ value }}
+            </mat-option>
+        </mat-autocomplete>
+    </div>
   `,
 })
 export class StateSelectFieldType extends FieldType<FieldTypeConfig> implements OnInit {

@@ -1,6 +1,10 @@
-<h1>Formulaire POC</h1>
+<div class="page">
+  <h1>Formulaire POC</h1>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit(model)">
-  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
-  <button type="submit" class="btn-submit">Envoyer</button>
-</form>
+  <div class="form-block">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+      <formly-form [form]="form" [fields]="fields" [model]="model" />
+      <button type="submit" class="btn-submit">Envoyer</button>
+    </form>
+  </div>
+</div>

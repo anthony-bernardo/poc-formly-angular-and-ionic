@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
-import fields from '../../../../server/fields.json';
 import model from '../../../../server/model.json';
+import { overrideFormStyle } from './override-form-style';
 
 @Component({
   selector: 'app-home',
@@ -22,7 +22,7 @@ export class HomeComponent {
   fields: FormlyFieldConfig[] = [
     {
       fieldGroupClassName: 'form-group',
-      fieldGroup: fields.config
+      fieldGroup: overrideFormStyle().config,
     }
   ];
 
