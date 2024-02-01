@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { FieldWrapper, FormlyModule } from '@ngx-formly/core';
 
 @Component({
-  selector: 'formly-wrapper-input-form-field',
+  selector: 'formly-wrapper-full-line-wrapper',
   imports: [
     FormlyModule,
     CommonModule
@@ -52,6 +52,6 @@ import { FieldWrapper, FormlyModule } from '@ngx-formly/core';
     </div>
   `,
 })
-export class InputFormFieldWrapper extends FieldWrapper {
+export class FullLineWrapperFormFieldWrapper extends FieldWrapper {
 }
 

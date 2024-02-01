@@ -7,7 +7,7 @@ import { FieldWrapper } from '@ngx-formly/core';
     `
       .card {
         display: flex;
-        background-color: lightgreen;
+        background-color: white;
         border: 1px solid black;
         border-radius: 5px;
         padding: 10px;
@@ -17,7 +17,6 @@ import { FieldWrapper } from '@ngx-formly/core';
   ],
   template: `
     <div class="card">
-      <h3 class="card-header">{{ props.label }}</h3>
       <div class="card-body">
         <ng-container #fieldComponent></ng-container>
       </div>

@@ -8,8 +8,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import messages from '../../../server/messages.json';
 import { CallFormFieldType } from './home/form/types/call-form-select.component';
 import { PanelFieldWrapper } from './home/form/wrappers/panel-wrapper.component';
-import { CheckBoxWrapper } from './home/form/wrappers/check-box-wrapper.component';
-import { InputFormFieldWrapper } from './home/form/wrappers/input-form-wrapper.component';
+import { GreenBoxWrapper } from './home/form/wrappers/green-box-wrapper.component';
+import { FullLineWrapperFormFieldWrapper } from './home/form/wrappers/full-line-wrapper.component';
 
 export const formlyConfig = {
   types: [
@@ -17,9 +17,9 @@ export const formlyConfig = {
     { name: 'state-select', component: StateSelectFieldType, },
   ],
   wrappers: [
-    { name: 'panel', component: PanelFieldWrapper },
-    { name: 'checkbox-wrapper', component: CheckBoxWrapper },
-    { name: 'input-wrapper', component: InputFormFieldWrapper },
+    { name: 'panel-wrapper', component: PanelFieldWrapper },
+    { name: 'green-box-wrapper', component: GreenBoxWrapper },
+    { name: 'full-line-wrapper', component: FullLineWrapperFormFieldWrapper },
   ],
   validationMessages: messages.config
 }

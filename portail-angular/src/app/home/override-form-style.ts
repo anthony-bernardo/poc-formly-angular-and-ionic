@@ -4,10 +4,10 @@ import { addWrappers } from '../../utils/addWrappers';
 export const overrideFormStyle = () => {
     return ({
         config: addWrappers(fields, [
-            { field: 'callForm', wrappers: ['panel'] },
-            { field: 'firstName', wrappers: ['input-wrapper'] },
-            { field: 'lastName', wrappers: ['input-wrapper'] },
-            { field: 'isInOtherState', wrappers: ['checkbox-wrapper'] },
+            { field: 'callForm', wrappers: ['panel-wrapper'] },
+            { field: 'firstName', wrappers: ['full-line-wrapper'] },
+            { field: 'lastName', wrappers: ['full-line-wrapper'] },
+            { field: 'isInOtherState', wrappers: ['green-box-wrapper'] },
         ])
     })
 };

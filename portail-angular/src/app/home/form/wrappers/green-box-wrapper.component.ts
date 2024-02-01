@@ -22,6 +22,6 @@ import { FieldWrapper } from '@ngx-formly/core';
     </div>
   `,
 })
-export class CheckBoxWrapper extends FieldWrapper {
+export class GreenBoxWrapper extends FieldWrapper {
 }
 
