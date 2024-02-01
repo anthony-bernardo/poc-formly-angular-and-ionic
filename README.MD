@@ -4,6 +4,7 @@
 
 - [x] Share the same form between web and mobile
 - [x] Use plateform specific components
+- [x] Different UI for web and mobile
 - [x] Use Angular 17 (last version) with formly
 
 ## :rocket: Getting started
