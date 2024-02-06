@@ -46,6 +46,17 @@
 			"expressions": {
 				"hide": "!model.isInOtherState"
 			}
+		},
+		{
+			"key": "state2",
+			"type": "state-select",
+			"props": {
+				"label": "Canton",
+				"placeholder": "Choisir un canton"
+			},
+			"expressions": {
+				"hide": "!model.state?.id"
+			}
 		}
 	]
 }

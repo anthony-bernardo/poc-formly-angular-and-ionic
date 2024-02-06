@@ -3,37 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FieldType, FieldTypeConfig, FormlyModule } from '@ngx-formly/core';
-import { Observable, of, startWith, switchMap } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
-const states = [
-    'Valais',
-    'Vaud',
-    'Genève',
-    'Fribourg',
-    'Neuchâtel',
-    'Jura',
-    'Berne',
-    'Zurich',
-    'Tessin',
-    'Grisons',
-    'Saint-Gall',
-    'Argovie',
-    'Lucerne',
-    'Schwytz',
-    'Zoug',
-    'Obwald',
-    'Nidwald',
-    'Uri',
-    'Glaris',
-    'Bâle-Ville',
-    'Bâle-Campagne',
-    'Appenzell Rhodes-Extérieures',
-    'Appenzell Rhodes-Intérieures',
-    'Thurgovie',
-    'Schaffhouse',
-];
+import { SelectItemServiceFactory } from '../../../services/factory.service';
+import { ISelectService, SelectItem } from '../../../services/ISelectService';
 
 @Component({
     selector: 'state-select',
@@ -46,6 +20,7 @@ const states = [
         FormlyBootstrapModule,
     ],
     standalone: true,
+    providers: [SelectItemServiceFactory],
     styles: [
         `
         input {
@@ -65,29 +40,37 @@ const states = [
             [formlyAttributes]="field"
             [placeholder]="props.placeholder || 'Selectionnez'"
         />
-        <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let value of filter | async" [value]="value">
-            {{ value }}
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="display" 
+            (optionSelected)="handleOptionSelected($event.option.value)">
+            <mat-option *ngFor="let value of filter | async" [value]="value" >
+                {{ value.title }}
             </mat-option>
         </mat-autocomplete>
     </div>
   `,
 })
 export class StateSelectFieldType extends FieldType<FieldTypeConfig> implements OnInit {
+    factory: SelectItemServiceFactory = new SelectItemServiceFactory();
+    service: ISelectService | null = null
+
     filter: Observable<any> | undefined;
 
     ngOnInit() {
-        this.filter = this.formControl.valueChanges.pipe(
-            startWith(''),
-            switchMap((term) => this.search(term)),
-        );
+        // create service from factory
+        this.service = this.factory.create(this.field.key as string);
+
+        this.formControl.valueChanges.subscribe(async (value) => {
+            const result = await this.service?.getData(value)
+            this.filter = of(result)
+            return result
+        })
     }
 
-    search(term: string) {
-        return of(term ? this.filterStates(term) : states.slice())
+    display(item: SelectItem): string {
+        return item && item.title ? item.title : '';
     }
 
-    filterStates(name: string) {
-        return states.filter((state) => state.toLowerCase().indexOf(name.toLowerCase()) === 0);
+    handleOptionSelected(value: SelectItem) {
+        this.field.formControl.setValue({ ...value, id: value.id })
     }
 }

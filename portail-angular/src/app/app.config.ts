@@ -1,6 +1,5 @@
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
 import { FormlyModule } from '@ngx-formly/core';
 import { StateSelectFieldType } from './home/form/types/state-select.component';
@@ -10,6 +9,13 @@ import { CallFormFieldType } from './home/form/types/call-form-select.component'
 import { PanelFieldWrapper } from './home/form/wrappers/panel-wrapper.component';
 import { GreenBoxWrapper } from './home/form/wrappers/green-box-wrapper.component';
 import { FullLineWrapperFormFieldWrapper } from './home/form/wrappers/full-line-wrapper.component';
+import { ZipService } from './services/zip.service';
+import { LocalityService } from './services/locality.service';
+
+export const selectFactoryConfig = {
+  "state": ZipService,
+  "state2": LocalityService,
+}
 
 export const formlyConfig = {
   types: [
