@@ -4,18 +4,32 @@ import { routes } from './app.routes';
 import { FormlyModule } from '@ngx-formly/core';
 import { StateSelectFieldType } from './home/form/types/state-select.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import messages from '../../../server/messages.json';
+import messages from '../../../server/config/messages.json';
 import { CallFormFieldType } from './home/form/types/call-form-select.component';
 import { PanelFieldWrapper } from './home/form/wrappers/panel-wrapper.component';
 import { GreenBoxWrapper } from './home/form/wrappers/green-box-wrapper.component';
 import { FullLineWrapperFormFieldWrapper } from './home/form/wrappers/full-line-wrapper.component';
-import { ZipService } from './services/zip.service';
 import { LocalityService } from './services/locality.service';
+import { CountryService } from './services/country.service';
+import { StreetService } from './services/street.service';
 
 export const selectFactoryConfig = {
-  "state": ZipService,
-  "state2": LocalityService,
+  "locality": LocalityService,
+  "street": StreetService,
+  "country": CountryService,
 }
+
+export const wrappersForFields = [
+  { field: 'isInOtherCountry', wrappers: ['green-box-wrapper'] },
+  { field: 'zip', wrappers: ['full-line-wrapper'] },
+  { field: 'locality', wrappers: ['full-line-wrapper'] },
+  { field: 'street', wrappers: ['full-line-wrapper'] },
+  { field: 'country', wrappers: ['full-line-wrapper'] },
+  { field: 'countryLocality', wrappers: ['full-line-wrapper'] },
+  { field: 'isFixed', wrappers: ['green-box-wrapper'] },
+  { field: 'estimatedDamageAmount', wrappers: ['full-line-wrapper'] },
+  { field: 'damageAmount', wrappers: ['full-line-wrapper'] },
+]
 
 export const formlyConfig = {
   types: [

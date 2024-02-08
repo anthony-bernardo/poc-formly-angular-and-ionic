@@ -21,6 +21,10 @@ See result : http://localhost:4200/
 
 See result : http://localhost:4201/
 
+### 3. Run server :
+
+`cd server && npm i && npm run start`
+
 ### 3. Change formly config
 
-Change files in /server folder
+Change files in /server/config folder

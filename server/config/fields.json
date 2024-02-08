@@ -1,0 +1,104 @@
+{
+	"config": [
+		{
+			"key": "isInOtherCountry",
+			"type": "checkbox",
+			"props": {
+				"label": "Lieu de sinistre à l'étranger"
+			}
+		},
+		{
+			"key": "zip",
+			"type": "input",
+			"props": {
+				"label": "NPA",
+				"placeholder": "Saisir un NPA",
+				"required": true,
+				"maxLength": 4
+			},
+			"expressions": {
+				"hide": "model.isInOtherCountry"
+			}
+		},
+		{
+			"key": "locality",
+			"type": "state-select",
+			"props": {
+				"label": "Localité",
+				"placeholder": "Saisir une localité",
+				"required": true,
+				"resetIfEmpty": ["zip"]
+			},
+			"expressions": {
+				"hide": "model.isInOtherCountry"
+			}
+		},
+		{
+			"key": "street",
+			"type": "state-select",
+			"props": {
+				"label": "Rue",
+				"placeholder": "Saisir une rue",
+				"required": true,
+				"resetIfEmpty": ["zip", "locality"]
+			},
+			"expressions": {
+				"hide": "model.isInOtherCountry"
+			}
+		},
+
+		{
+			"key": "country",
+			"type": "state-select",
+			"props": {
+				"label": "Pays",
+				"placeholder": "Saisir un pays",
+				"required": true
+			},
+			"expressions": {
+				"hide": "!model.isInOtherCountry"
+			}
+		},
+		{
+			"key": "countryLocality",
+			"type": "input",
+			"props": {
+				"label": "Localité",
+				"placeholder": "Saisir une localité",
+				"required": true
+			},
+			"expressions": {
+				"hide": "!model.isInOtherCountry"
+			}
+		},
+		{
+			"key": "isFixed",
+			"type": "checkbox",
+			"props": {
+				"label": "Le dommage est-il réparé ?"
+			}
+		},
+		{
+			"key": "damageAmount",
+			"type": "input",
+			"props": {
+				"label": "Montant du dommage",
+				"required": true
+			},
+			"expressions": {
+				"hide": "!model.isFixed"
+			}
+		},
+		{
+			"key": "estimatedDamageAmount",
+			"type": "input",
+			"props": {
+				"label": "Estimation du dommage",
+				"required": true
+			},
+			"expressions": {
+				"hide": "model.isFixed"
+			}
+		}
+	]
+}

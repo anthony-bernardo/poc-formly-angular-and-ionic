@@ -1,11 +1,15 @@
-import { ISelectService } from "./ISelectService";
+import { ISelectService, Options } from "./factory/ISelectService";
 
 export class LocalityService implements ISelectService {
-    async getData(term: string) {
-        const result = await fetch(`https://api.escuelajs.co/api/v1/products/?title=${term}`)
-        const data = await result.json();
-        const items = data.map((p: any) => ({ title: p.title, id: p.id }));
+    async getData(term: string, options: Options) {
+        const { formModel } = options
+        const { zip } = formModel
 
-        return items
+        const result = await fetch(`http://localhost:3000/locality?zip=${zip}`)
+        const data = await result.json();
+        const items = data.map((p: any) => ({ title: p.city, id: p.id }));
+        const filtered = items.filter((p: any) => p.title.includes(term))
+
+        return filtered
     }
 }

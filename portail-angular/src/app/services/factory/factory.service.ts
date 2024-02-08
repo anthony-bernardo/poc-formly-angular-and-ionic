@@ -1,4 +1,4 @@
-import { selectFactoryConfig } from "../app.config"
+import { selectFactoryConfig } from "../../app.config"
 
 export class SelectItemServiceFactory {
     create(fieldKey: string) {

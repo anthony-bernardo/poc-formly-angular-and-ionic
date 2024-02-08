@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { FieldType, FieldTypeConfig, FormlyModule } from '@ngx-formly/core';
-import { Observable, of } from 'rxjs';
+import { Observable, filter, of, tap } from 'rxjs';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { SelectItemServiceFactory } from '../../../services/factory.service';
-import { ISelectService, SelectItem } from '../../../services/ISelectService';
+import { SelectItemServiceFactory } from '../../../services/factory/factory.service';
+import { ISelectService, SelectItem } from '../../../services/factory/ISelectService';
+import { resetIfEmpty } from '../../../../utils/resetIfEmpty';
 
 @Component({
     selector: 'state-select',
@@ -32,7 +33,6 @@ import { ISelectService, SelectItem } from '../../../services/ISelectService';
     ],
     template: `
     <div>
-        <label>{{ props.label }}</label>
         <input
             matInput
             [matAutocomplete]="auto"
@@ -40,7 +40,7 @@ import { ISelectService, SelectItem } from '../../../services/ISelectService';
             [formlyAttributes]="field"
             [placeholder]="props.placeholder || 'Selectionnez'"
         />
-        <mat-autocomplete #auto="matAutocomplete" [displayWith]="display" 
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="display"
             (optionSelected)="handleOptionSelected($event.option.value)">
             <mat-option *ngFor="let value of filter | async" [value]="value" >
                 {{ value.title }}
@@ -50,6 +50,7 @@ import { ISelectService, SelectItem } from '../../../services/ISelectService';
   `,
 })
 export class StateSelectFieldType extends FieldType<FieldTypeConfig> implements OnInit {
+    // service + factory
     factory: SelectItemServiceFactory = new SelectItemServiceFactory();
     service: ISelectService | null = null
 
@@ -60,10 +61,16 @@ export class StateSelectFieldType extends FieldType<FieldTypeConfig> implements 
         this.service = this.factory.create(this.field.key as string);
 
         this.formControl.valueChanges.subscribe(async (value) => {
-            const result = await this.service?.getData(value)
+            const isValueSelected = typeof value === 'object' || value === undefined
+            if (isValueSelected) return []
+
+            const result = await this.service?.getData(value, { formModel: this.model })
             this.filter = of(result)
             return result
         })
+
+        // Improve: this can be injected through a service
+        resetIfEmpty(this.field, this.props, this.form)
     }
 
     display(item: SelectItem): string {
