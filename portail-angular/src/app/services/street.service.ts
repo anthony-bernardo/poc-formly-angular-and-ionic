@@ -1,4 +1,5 @@
 import { ISelectService, Options } from "./factory/ISelectService";
+import fetch from 'cross-fetch';
 
 export class StreetService implements ISelectService {
     async getData(term: string, options: Options) {

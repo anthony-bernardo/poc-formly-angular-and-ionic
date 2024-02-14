@@ -1,5 +1,6 @@
 
 import { ISelectService } from "./factory/ISelectService";
+import fetch from 'cross-fetch';
 
 export class CountryService implements ISelectService {
     async getData(term: string) {
